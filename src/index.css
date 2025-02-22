@@ -1,0 +1,12 @@
+:root {
+  /* Font */
+  --font-family: 'Funnel Sans', serif;
+  /* Palette */
+  --navy: #09122c;
+  --red: #872341;
+  --pink: #be3144;
+  --light-pink: #e17564;
+  --white: #ffffff;
+  --black: #000;
+  --dark-gray: #333333;
+}
