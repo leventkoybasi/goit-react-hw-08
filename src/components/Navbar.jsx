@@ -33,6 +33,14 @@ function Navbar() {
                 Contacts
               </NavLink>
             </li>
+            <li className='nav-item ms-3'>
+              <NavLink
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                to='/login'
+              >
+                Login
+              </NavLink>
+            </li>
           </ul>
           <form className='d-flex' role='search'>
             <input
