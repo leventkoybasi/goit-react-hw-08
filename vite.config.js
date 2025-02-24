@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        // Modern Sass API'sini kullanmak için 'api' seçeneğini 'modern-compiler' olarak ayarlayın
-        api: 'modern-compiler',
-      },
-    },
-  },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       // Modern Sass API'sini kullanmak için 'api' seçeneğini 'modern-compiler' olarak ayarlayın
+  //       api: 'modern-compiler',
+  //     },
+  //   },
+  // },
 });
