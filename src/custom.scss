@@ -1,4 +1,3 @@
-// // SCSS Variables (Bootstrap)
 $theme-colors: (
   'primary': #be3144,
   'secondary': #872341,
@@ -15,5 +14,5 @@ $theme-colors: (
 $font-family-base: 'Funnel Sans', serif;
 
 @import 'bootstrap/scss/bootstrap';
-// @import '../../node_modules/bootstrap/scss/bootstrap';
+// @import '../node_modules/bootstrap/scss/bootstrap.scss';
 // @use 'bootstrap/scss/bootstrap' as *;

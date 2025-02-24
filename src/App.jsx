@@ -1,6 +1,6 @@
 import Background from './components/Background';
 import LoginForm from './components/LoginForm';
-import Navbar from './components/navbar';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
