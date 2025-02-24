@@ -15,7 +15,7 @@ function LoginForm() {
             width={57}
             height={57}
           />
-          <h2 className='h3 mb-3 fw-normal text-center'>Please sign in</h2>
+          <h2 className='h3 mb-3 fw-normal text-center'>Please Sign In</h2>
 
           <div>
             <div className='form-floating mb-3'>
@@ -25,7 +25,7 @@ function LoginForm() {
                 id='floatingInput'
                 placeholder='name@example.com'
               />
-              <label htmlFor='floatingInput'>Email address</label>
+              <label htmlFor='floatingInput'>E-mail Address</label>
             </div>
             <div className='form-floating'>
               <input
