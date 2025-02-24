@@ -1,7 +1,15 @@
+import Background from './components/Background';
+import LoginForm from './components/LoginForm';
+import Navbar from './components/navbar';
+
 function App() {
   return (
     <>
-      <h1>App</h1>
+      <Background />
+      <div style={{ position: 'relative', zIndex: 1 }} className='container m-auto'>
+        <Navbar />
+        <LoginForm />
+      </div>
     </>
   );
 }
