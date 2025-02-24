@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import connectSphere from '../assets/connectSphere.svg';
 
 function Navbar() {
@@ -7,10 +8,10 @@ function Navbar() {
       style={{ backgroundColor: 'transparent' }}
     >
       <div className='container-fluid'>
-        <a className='navbar-brand d-flex align-items-center' href='#'>
+        <NavLink className='navbar-brand d-flex align-items-center' to='/'>
           <img src={connectSphere} alt='Logo' width={30} height={30} className='me-2' />
           Connect Sphere
-        </a>
+        </NavLink>
         <button
           className='navbar-toggler'
           type='button'
@@ -25,9 +26,12 @@ function Navbar() {
         <div className='collapse navbar-collapse ms-3' id='navbarSupportedContent'>
           <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
-              <a className='nav-link active' href='#'>
+              <NavLink
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                to='/contact'
+              >
                 Contacts
-              </a>
+              </NavLink>
             </li>
           </ul>
           <form className='d-flex' role='search'>

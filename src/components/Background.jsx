@@ -9,7 +9,7 @@ const Background = () => {
       bottom: `-${Math.random() * 200}px`,
       width: size,
       height: size,
-      delay: `${Math.random() * 10}s`,
+      delay: `${Math.random() * 5}s`,
     };
   });
 
