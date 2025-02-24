@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import '../sass/background.css';
+import '../styles/background.css';
 
 const Background = () => {
   const particles = new Array(12).fill(null).map((_, index) => {

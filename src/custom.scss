@@ -1,0 +1,19 @@
+// // SCSS Variables (Bootstrap)
+$theme-colors: (
+  'primary': #be3144,
+  'secondary': #872341,
+  'success': #198754,
+  'danger': #dc3545,
+  'warning': #ffc107,
+  'info': #e17564,
+  'light': #ffffff,
+  'dark': #09122c,
+  'black': #000000,
+  'white': #ffffff,
+);
+
+$font-family-base: 'Funnel Sans', serif;
+
+@import 'bootstrap/scss/bootstrap';
+// @import '../../node_modules/bootstrap/scss/bootstrap';
+// @use 'bootstrap/scss/bootstrap' as *;
