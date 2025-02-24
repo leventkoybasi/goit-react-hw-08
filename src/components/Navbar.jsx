@@ -1,7 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import connectSphere from '../assets/connectSphere.svg';
+import { Formik, Field, Form } from 'formik';
 
 function Navbar() {
+  const handleSearch = (values, actions) => {
+    console.log('Search submitted:', values);
+    actions.resetForm();
+  };
   return (
     <nav
       className='navbar navbar-expand-lg navbar-dark p-2'
@@ -42,17 +47,30 @@ function Navbar() {
               </NavLink>
             </li>
           </ul>
-          <form className='d-flex' role='search'>
-            <input
-              className='form-control me-2'
-              type='search'
-              placeholder='Search'
-              aria-label='Search'
-            />
-            <button className='btn btn-outline-light px-3 py-1' type='submit'>
-              Search
-            </button>
-          </form>
+          <Formik
+            initialValues={{
+              search: '',
+            }}
+            onSubmit={handleSearch}
+          >
+            {({ handleChange }) => (
+              <Form className='d-flex' role='search'>
+                <Field
+                  className='form-control me-2'
+                  name='search'
+                  type='search'
+                  placeholder='Search'
+                  aria-label='Search'
+                  style={{ minWidth: '250px', maxWidth: '330px', width: '100%' }}
+                  onChange={(e) => {
+                    handleChange(e);
+                    console.log('Search input value:', e.target.value);
+                  }}
+                />
+                <button className='btn btn-outline-light px-3 py-1'>Search</button>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </nav>
