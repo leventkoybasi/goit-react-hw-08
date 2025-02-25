@@ -61,3 +61,6 @@ body {
   left: 50% !important;
   transform: translate(-50%, -50%) !important;
 }
+.addContact {
+  margin-top: 67px !important;
+}

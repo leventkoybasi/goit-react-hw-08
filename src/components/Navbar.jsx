@@ -30,9 +30,9 @@ function Navbar() {
         >
           <span className='navbar-toggler-icon' />
         </button>
-        <div className='collapse navbar-collapse ms-3' id='navbarSupportedContent'>
-          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            <li className='nav-item'>
+        <div className='collapse navbar-collapse ms-3 ' id='navbarSupportedContent'>
+          <ul className='navbar-nav me-auto mb-2 mb-lg-0 '>
+            <li className='nav-item ms-4 ms-lg-0'>
               <NavLink
                 className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                 to='/contact'
@@ -40,7 +40,7 @@ function Navbar() {
                 Contacts
               </NavLink>
             </li>
-            <li className='nav-item ms-3'>
+            <li className='nav-item ms-4 ms-lg-3 '>
               <NavLink
                 className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                 to='/login'
@@ -56,7 +56,7 @@ function Navbar() {
             onSubmit={handleSearch}
           >
             {({ handleChange }) => (
-              <Form className='d-flex' role='search'>
+              <Form className='d-flex ms-4' role='search'>
                 <Field
                   className='form-control me-2'
                   name='search'
