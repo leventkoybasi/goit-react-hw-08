@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom';
 import connectSphere from '../assets/connectSphere.svg';
 import { Formik, Field, Form } from 'formik';
 
+const search = false;
+
 function Navbar() {
   const handleSearch = (values, actions) => {
     console.log('Search submitted:', values);
@@ -67,7 +69,12 @@ function Navbar() {
                     console.log('Search input value:', e.target.value);
                   }}
                 />
-                <button className='btn btn-outline-light px-3 py-1'>Search</button>
+                <button
+                  className='btn btn-outline-light px-3 py-1'
+                  style={{ paddingLeft: '1rem', paddingRight: '1rem' }}
+                >
+                  {search ? 'Searching...' : 'Search'}
+                </button>
               </Form>
             )}
           </Formik>

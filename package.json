@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "formik": "^2.4.6",
     "modern-normalize": "^3.0.1",
     "react": "^19.0.0",

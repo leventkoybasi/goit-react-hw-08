@@ -34,7 +34,7 @@ body {
 .form-floating > label::after {
   background-color: transparent !important;
 }
-/* Checkbox'ın arka planını beyaz yap */
+
 .form-check-input {
   background-color: white !important;
   border: 1px solid var(--pink) !important;
