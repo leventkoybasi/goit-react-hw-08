@@ -3,6 +3,7 @@ import connectSphere from '../assets/connectSphere.svg';
 import * as Yup from 'yup';
 
 const validationSchema = Yup.object().shape({
+  name: Yup.string().required().min(3, 'Name must be at least 3 characters'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
   password: Yup.string()
     .min(5, 'Password must be at least 5 characters')
@@ -13,15 +14,11 @@ const validationSchema = Yup.object().shape({
 function RegisterForm() {
   const handleSubmit = (values, actions) => {
     console.log('Form submitted:', values);
-    actions.resetForm();
     actions.setSubmitting(true);
+    actions.resetForm();
 
-    // Simüle edilmiş bir API çağrısı veya işlem
     setTimeout(() => {
-      // İşlem tamamlandığında isSubmitting durumunu false yap
       actions.setSubmitting(false);
-
-      // Formu sıfırla
       actions.resetForm();
     }, 2000);
   };
@@ -34,6 +31,7 @@ function RegisterForm() {
       >
         <Formik
           initialValues={{
+            name: '',
             email: '',
             password: '',
             rememberMe: false,
@@ -55,10 +53,10 @@ function RegisterForm() {
               <div>
                 <div className='form-floating mb-3'>
                   <Field
-                    type='name'
+                    type='text'
                     name='name'
                     className='form-control'
-                    id='floatingInput'
+                    id='floatingName'
                     placeholder='Name Surname'
                   />
                   <label htmlFor='floatingInput'>Enter Your Name</label>
