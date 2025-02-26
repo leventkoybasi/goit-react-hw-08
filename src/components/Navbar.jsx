@@ -43,6 +43,14 @@ function Navbar() {
             <li className='nav-item ms-4 ms-lg-3 '>
               <NavLink
                 className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                to='/register'
+              >
+                Register
+              </NavLink>
+            </li>
+            <li className='nav-item ms-4 ms-lg-3 '>
+              <NavLink
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
                 to='/login'
               >
                 Login
