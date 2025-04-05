@@ -24,10 +24,7 @@ function Home() {
           >
             Welcome to ConnectSphere
           </h1>
-          <p
-            className='lead text-center fs-5 fs-md-6 pt-3 px-5'
-            style={{ opacity: 1, color: 'white' }}
-          >
+          <p className='lead text-center fs-md-6 pt-3 px-5' style={{ opacity: 1, color: 'white' }}>
             ConnectSphere is a platform that not only connects individuals who are in need of help
             but also offers a wide range of services to assist people in overcoming challenges.
             Whether you're looking for assistance, guidance, or to offer your skills to others,
