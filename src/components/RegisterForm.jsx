@@ -109,11 +109,18 @@ function RegisterForm() {
                 </label>
               </div>
               <button
-                className='btn btn-primary w-100 py-2 mb-5'
+                className='btn btn-primary w-100 py-2 mb-2'
                 type='submit'
                 disabled={isSubmitting}
               >
                 {isSubmitting ? 'Submitting...' : 'Sign in'}
+              </button>
+              <button
+                className='btn btn-primary w-100 py-2 mb-5 opacity-75'
+                type='button'
+                onClick={() => navigate('/login')}
+              >
+                Login
               </button>
             </Form>
           )}

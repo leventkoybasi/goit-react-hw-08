@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { lazy, Suspense, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from './store/auth/operations';
-import { selectIsRefreshing } from './store/auth/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from './store/auth/selectors';
 import Background from './components/Background';
 import Loader from './components/Loader';
 
@@ -19,6 +19,7 @@ import Github from './components/Github';
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -36,7 +37,10 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/contact' element={<ContactPage />} />
+            <Route
+              path='/contact'
+              element={isLoggedIn ? <ContactPage /> : <Navigate to='/register' />}
+            />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
           </Routes>
