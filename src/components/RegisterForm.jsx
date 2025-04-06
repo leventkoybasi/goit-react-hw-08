@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { register } from '../store/auth/operations';
+import toast from 'react-hot-toast';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(3, 'Name must be at least 3 characters'),
@@ -18,15 +19,21 @@ function RegisterForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (values, actions) => {
+    if (values.rememberMe) {
+      localStorage.setItem('email', values.email);
+      localStorage.setItem('password', values.password);
+    }
+
     dispatch(register(values))
       .unwrap()
       .then(() => {
-        console.log('Registration successful');
+        toast.success('Registration successful!');
         actions.resetForm();
         navigate('/contact');
       })
       .catch((error) => {
-        console.error('Registration failed:', error);
+        toast.error(`Registration failed: ${error}`);
+        actions.setSubmitting(false);
       });
   };
 

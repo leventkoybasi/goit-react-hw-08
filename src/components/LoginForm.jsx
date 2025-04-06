@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../store/auth/operations';
+import toast from 'react-hot-toast';
+import { useEffect, useState } from 'react';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -17,16 +19,45 @@ function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [initialValues, setInitialValues] = useState({
+    email: '',
+    password: '',
+    rememberMe: false,
+  });
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('email');
+    const savedPassword = localStorage.getItem('password');
+    if (savedEmail && savedPassword) {
+      setInitialValues((prev) => ({
+        ...prev,
+        email: savedEmail,
+        password: savedPassword,
+        rememberMe: true,
+      }));
+    }
+  }, []);
+
   const handleSubmit = (values, actions) => {
+    if (values.rememberMe) {
+      localStorage.setItem('email', values.email);
+      localStorage.setItem('password', values.password);
+    } else {
+      localStorage.removeItem('email');
+      localStorage.removeItem('password');
+    }
+
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
-        console.log('Login successful');
+        toast.success('Login successful!');
         actions.resetForm();
         navigate('/contact');
       })
+      // eslint-disable-next-line no-unused-vars
       .catch((error) => {
-        console.error('Login failed:', error);
+        toast.error('Login failed: Invalid email or password');
+        actions.setSubmitting(false);
       });
   };
 
@@ -37,11 +68,7 @@ function LoginForm() {
         style={{ maxWidth: '330px' }}
       >
         <Formik
-          initialValues={{
-            email: '',
-            password: '',
-            rememberMe: false,
-          }}
+          initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >

@@ -5,6 +5,7 @@ import { selectFilteredContacts } from '../store/contacts/selectors';
 import ContactForm from '../components/ContactForm';
 import avatars from '../js/index';
 import bAvatar from '../assets/b.jpg';
+import toast from 'react-hot-toast';
 
 function getAvatarBasedOnName(name) {
   if (name.toLowerCase().startsWith('bet')) {
@@ -25,10 +26,10 @@ export default function Contact() {
     dispatch(deleteContact(contactId))
       .unwrap()
       .then(() => {
-        console.log(`Contact with ID ${contactId} deleted successfully`);
+        toast.success('Contact deleted successfully!');
       })
       .catch((error) => {
-        console.error('Failed to delete contact:', error);
+        toast.error(`Failed to delete contact: ${error}`);
       });
   };
 

@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import '../index.css';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../store/contacts/operations';
+import toast from 'react-hot-toast';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters'),
@@ -19,11 +20,11 @@ function ContactForm() {
     dispatch(addContact(values))
       .unwrap()
       .then(() => {
-        console.log('Contact added successfully');
+        toast.success('Contact added successfully!');
         actions.resetForm();
       })
       .catch((error) => {
-        console.error('Failed to add contact:', error);
+        toast.error(`Failed to add contact: ${error}`);
       });
   };
 

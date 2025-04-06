@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logOut } from '../store/auth/operations';
+import toast from 'react-hot-toast';
 
 function LogoutButton() {
   const dispatch = useDispatch();
@@ -10,11 +11,11 @@ function LogoutButton() {
     dispatch(logOut())
       .unwrap()
       .then(() => {
-        console.log('Logout successful');
+        toast.success('Logout successful!');
         navigate('/login');
       })
       .catch((error) => {
-        console.error('Logout failed:', error);
+        toast.error(`Logout failed: ${error}`);
       });
   };
 
