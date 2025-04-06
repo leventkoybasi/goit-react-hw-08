@@ -73,3 +73,26 @@ body {
     font-size: 1.25rem;
   }
 }
+.nav-item-button {
+  color: white;
+  padding-left: 5px;
+  padding-right: 5px;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.nav-item-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e17564;
+}
+
+.nav-item-button.active {
+  color: #e17564;
+}

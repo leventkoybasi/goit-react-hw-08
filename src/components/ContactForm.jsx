@@ -1,6 +1,8 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../index.css';
+import { useDispatch } from 'react-redux';
+import { addContact } from '../store/contacts/operations';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Name is required').min(3, 'Name must be at least 3 characters'),
@@ -11,12 +13,18 @@ const validationSchema = Yup.object().shape({
 });
 
 function ContactForm() {
+  const dispatch = useDispatch();
+
   const handleSubmit = (values, actions) => {
-    console.log('Form submitted:', values);
-    setTimeout(() => {
-      actions.setSubmitting(false);
-      actions.resetForm();
-    }, 2000);
+    dispatch(addContact(values))
+      .unwrap()
+      .then(() => {
+        console.log('Contact added successfully');
+        actions.resetForm();
+      })
+      .catch((error) => {
+        console.error('Failed to add contact:', error);
+      });
   };
 
   return (

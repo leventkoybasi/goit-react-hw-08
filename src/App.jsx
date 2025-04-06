@@ -1,19 +1,33 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser } from './store/auth/operations';
+import { selectIsRefreshing } from './store/auth/selectors';
 import Background from './components/Background';
+import Loader from './components/Loader';
 
-//lazy load pages
+// Lazy load pages
 const HomePage = lazy(() => import('./pages/Home'));
 const LoginPage = lazy(() => import('./pages/Login'));
 const RegisterPage = lazy(() => import('./components/RegisterForm'));
 const ContactPage = lazy(() => import('./pages/Contact'));
 
-//components
+// Components
 import Navbar from './components/Navbar';
 import Github from './components/Github';
-import Loader from './components/Loader';
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  if (isRefreshing) {
+    return <Loader />;
+  }
+
   return (
     <>
       <Suspense fallback={<Loader />}>

@@ -1,6 +1,9 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import connectSphere from '../assets/connectSphere.svg';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { register } from '../store/auth/operations';
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().min(3, 'Name must be at least 3 characters'),
@@ -12,15 +15,19 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleSubmit = (values, actions) => {
-    console.log('Form submitted:', values);
-    actions.setSubmitting(true);
-    actions.resetForm();
-
-    setTimeout(() => {
-      actions.setSubmitting(false);
-      actions.resetForm();
-    }, 2000);
+    dispatch(register(values))
+      .unwrap()
+      .then(() => {
+        console.log('Registration successful');
+        actions.resetForm();
+        navigate('/contact');
+      })
+      .catch((error) => {
+        console.error('Registration failed:', error);
+      });
   };
 
   return (

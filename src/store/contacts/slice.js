@@ -1,59 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { logOut } from '../auth/operations';
 import { fetchContacts, addContact, deleteContact } from './operations';
+
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+};
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    contacts: [],
-    isLoading: false,
-    error: null,
-  },
+  initialState,
   extraReducers: (builder) => {
     builder
-      // GET Contacts
       .addCase(fetchContacts.pending, (state) => {
         state.isLoading = true;
-        state.error = null;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.contacts = action.payload;
+        state.error = null;
+        state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
-      });
-
-    // ADD Contact
-    builder
-      .addCase(addContact.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
+        state.error = action.payload;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.contacts.push(action.payload);
-      })
-      .addCase(addContact.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
-      });
-
-    // DELETE Contact
-    builder
-      .addCase(deleteContact.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
+        state.items.push(action.payload);
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.contacts = state.contacts.filter((contact) => contact.id !== action.payload);
+        state.items = state.items.filter((item) => item.id !== action.payload);
       })
-      .addCase(deleteContact.rejected, (state, action) => {
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.error = null;
         state.isLoading = false;
-        state.error = action.error.message;
       });
   },
 });
 
-export default contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;

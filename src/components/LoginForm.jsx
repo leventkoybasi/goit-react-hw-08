@@ -1,6 +1,9 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import connectSphere from '../assets/connectSphere.svg';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../store/auth/operations';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -11,19 +14,20 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = (values, actions) => {
-    console.log('Form submitted:', values);
-    actions.resetForm();
-    actions.setSubmitting(true);
-
-    // Simüle edilmiş bir API çağrısı veya işlem
-    setTimeout(() => {
-      // İşlem tamamlandığında isSubmitting durumunu false yap
-      actions.setSubmitting(false);
-
-      // Formu sıfırla
-      actions.resetForm();
-    }, 2000);
+    dispatch(logIn(values))
+      .unwrap()
+      .then(() => {
+        console.log('Login successful');
+        actions.resetForm();
+        navigate('/contact');
+      })
+      .catch((error) => {
+        console.error('Login failed:', error);
+      });
   };
 
   return (
